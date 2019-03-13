@@ -20,22 +20,22 @@
     # ここにプログラムを記述してください。
     # 1行目(人数)をintegerとして取得し、nに代入
     n = f.gets.to_i
-    # 2行目を配列([メンバー1 メンバー2 メンバー3 ・・・ ])で取得し、menberに代入
-    menber = f.gets.split
+    # 2行目を配列([メンバー0 メンバー1 メンバー2 ・・・ ])で取得し、menbersに代入
+    menbers = f.gets.split
     # 空のハッシュを作成
     result = {}
     # 人数分(n回)ループを回すためtimesメソッドを利用
     n.times do |i|
-      result[menber[i]] = 0 # keyにmenber[i],valueに0のペアを作成(初期化)
+      result[menbers[i]] = 0 # keyにmenbers[i],valueに0のペアを作成(初期化)
     end
-    # ここまでで、全員のメンバー名をkeyとし、0をvalueとするハッシュが完成
+    # ここまでで、全員のメンバー名をkeyとし、0をvalueとするハッシュ(result)が完成
 
     # 3行目(学習した回数)をintegerで取得し、mに代入
     m = f.gets.to_i
     # 学習した回数分(m回)ループを回すためtimesメソッドを利用
     m.times do |i|
-      cost = f.gets.split #4行目を配列([メンバー 費用])で取得し、costに代入。これをm回繰り返す。
-      # resultからメンバー(cost[0])を探し、valueに費用(cost[1])を加える。これをm回繰り返す。
+      cost = f.gets.split #4行目を配列([メンバー 費用])で取得し、costに代入。これを次行以降も計m回繰り返す。
+      # 上で作ったハッシュ(result)からcost[0](メンバー)を探し、valueにcost[1](費用)を加える。これをm回繰り返す。
       result[cost[0]] += cost[1].to_i
     end
     # sort_byメソッドでvalueを基準にソートを行い降順にする
