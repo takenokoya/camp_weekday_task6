@@ -18,6 +18,29 @@
   puts "例#{t}の答え"
   File.open("data00#{t}.txt", "r"){ |f|
     # ここにプログラムを記述してください。
+    # 1行目(人数)をintegerとして取得し、nに代入
+    n = f.gets.to_i
+    # 2行目を配列([メンバー1 メンバー2 メンバー3 ・・・ ])で取得し、menberに代入
+    menber = f.gets.split
+    # 空のハッシュを作成
+    result = {}
+    # 人数分(n回)ループを回すためtimesメソッドを利用
+    n.times do |i|
+      result[menber[i]] = 0 # keyにmenber[i],valueに0のペアを作成(初期化)
+    end
+    # ここまでで、全員のメンバー名をkeyとし、0をvalueとするハッシュが完成
+
+    # 3行目(学習した回数)をintegerで取得し、mに代入
+    m = f.gets.to_i
+    # 学習した回数分(m回)ループを回すためtimesメソッドを利用
+    m.times do |i|
+      cost = f.gets.split #4行目を配列([メンバー 費用])で取得し、costに代入。これをm回繰り返す。
+      # resultからメンバー(cost[0])を探し、valueに費用(cost[1])を加える。これをm回繰り返す。
+      result[cost[0]] += cost[1].to_i
+    end
+    # sort_byメソッドでvalueを基準にソートを行い降順にする
+    # sort_byメソッドは配列で出力されるため、hashに変換する
+    puts result.sort_by{ | k, v | v }.reverse.to_h
   }
 end
 
